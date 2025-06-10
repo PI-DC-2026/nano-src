@@ -1,0 +1,25 @@
+//W.McCaffrey, E.Tann, T.Huddleston
+//DC2026 Testing 6/6/2025
+//3MHz to 2.6MHz Square Wave Loop
+//Test loop to confirm all the R2R latches work and test the speeds
+//We found that when we have PORTB turned on outside the loop, and use the while(1) loop, we can get a 
+//2.6MHz wave with PORT C and PORT D on/off, with a 33% positive duty cycle
+//This hits all quadrants. When we turn off either portC or portD, we can reach 3MHz with a 25% positive duty cycle
+//
+
+void setup() {
+  DDRC = 0xFF;  // Set PC0–PC7 as outputs
+  DDRD = 0xFF;  // Set PD0–PD7 as outputs
+  DDRB |= 0x1F; // Set PB0–PB4 as outputs
+  PORTB |= 0x1F; // PB0–PB4 ON
+}
+
+void loop() {
+     while(1){
+     PORTC = 0xFF;
+     PORTD = 0xFF;
+
+     PORTC = 0x00;
+     PORTD = 0x00;
+     }
+  }
